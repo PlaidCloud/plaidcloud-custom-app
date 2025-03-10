@@ -1,6 +1,6 @@
 # A Hello World Example for PlaidCloud Custom App Deployment
 
-This repository contains an exmaple of a hello world app that will deploy as part of a PlaidCloud workspace.
+This repository contains an example of a hello world app that will deploy as part of a PlaidCloud workspace.
 
 To deploy a custom application, follow the steps below:
 
