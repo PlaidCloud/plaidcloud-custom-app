@@ -1,0 +1,17 @@
+{{- if eq .Release.Namespace "example-namespace" }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: example-configmap
+  labels:
+    app: plaidcloud
+    release: {{ .Release.Name }}
+data:
+  example_key: example_value
+
+  example.txt: |
+    A file named example.txt will be created with this text as its content.
+
+  example-two.txt: |
+    Each required file can be defined in this way.
+{{- end }}

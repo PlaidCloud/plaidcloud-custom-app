@@ -1,0 +1,20 @@
+{{- if eq .Release.Namespace "example-namespace" }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-hello-frontend
+  labels:
+    app: plaidcloud
+    component: example-hello
+    release: {{ .Release.Name }}
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: http
+  selector:
+    app.plaidcloud.com/app: plaidcloud
+    app.plaidcloud.com/component: example-hello
+    release: {{ .Release.Name }}
+{{- end }}

@@ -1,0 +1,46 @@
+{{- if eq .Release.Namespace "example-namespace" }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-example-hello
+  labels:
+      app.plaidcloud.com/app: plaidcloud
+      app.plaidcloud.com/component: example-hello
+      release: {{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.plaidcloud.com/app: plaidcloud
+      app.plaidcloud.com/component: example-hello
+  template:
+    metadata:
+      labels:
+        app.plaidcloud.com/app: plaidcloud
+        app.plaidcloud.com/component: example-hello
+        release: {{ .Release.Name }}
+    spec:
+      volumes:
+      - name: example-volume
+        configMap:
+          name: example-configmap
+      containers:
+      - name: example-hello
+        image: nginxdemos/hello:0.4
+        # If using your own protected image repository, uncomment this secret and create a pull secret as shown in the example.
+        # imagePullSecret: example-key
+        volumeMounts:
+          - name: example-volume
+            mountPath: /home/temp/
+            readonly: true
+        env:
+          - name: EXAMPLE_ENV_VAR_FROM_CONFIGMAP
+            valueFrom:
+              configMapKeyRef:
+                name: example-configmap
+                key: example_key
+        # Any ports that need opened for the running application should be defined here.    
+        ports:
+          - name: http
+            containerPort: 80
+{{- end }}
