@@ -29,6 +29,13 @@ spec:
         image: nginxdemos/hello:0.4
         # If using your own protected image repository, uncomment this secret and create a pull secret as shown in the example.
         # imagePullSecret: example-key
+        resources:
+          requests:
+            cpu: 50m
+            memory: 250Mi
+          limits:
+            cpu: 50m
+            memory: 250Mi
         volumeMounts:
           - name: example-volume
             mountPath: /home/temp/
