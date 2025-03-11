@@ -1,5 +1,3 @@
----
-{{- if eq .Release.Namespace "example-namespace" }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -27,4 +25,3 @@ spec:
             name: {{ .Release.Name }}-hello-frontend
             port:
               number: 80
-{{- end }}

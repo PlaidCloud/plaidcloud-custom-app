@@ -1,4 +1,3 @@
-{{- if eq .Release.Namespace "example-namespace" }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -17,4 +16,3 @@ spec:
     app.plaidcloud.com/app: plaidcloud
     app.plaidcloud.com/component: example-hello
     release: {{ .Release.Name }}
-{{- end }}
