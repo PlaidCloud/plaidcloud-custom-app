@@ -38,7 +38,7 @@ spec:
             memory: 250Mi
         volumeMounts:
           - name: example-volume
-            mountPath: /home/temp/
+            mountPath: {{ .Values.exampleValues.mountPath }}
             readonly: true
         env:
           - name: EXAMPLE_ENV_VAR_FROM_CONFIGMAP
