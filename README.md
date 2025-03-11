@@ -22,7 +22,7 @@ If your image repository is private, we have included an example of how to creat
 
 ## 3. Update the values file and Chart with your values and application information
 
-Helm makes available a variety of functions that can be uses to programatically generate templates.
+Helm makes available a variety of functions that can be used to programatically generate templates.
 
 https://helm.sh/docs/chart_template_guide/functions_and_pipelines/
 
