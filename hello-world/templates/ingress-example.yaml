@@ -1,27 +1,27 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: {{ .Release.Name }}-example-hello-ingress
-  labels:
-    app.plaidcloud.com/app: nginx
-    app.plaidcloud.com/component: example-ingress
-  annotations:
-    cert-manager.io/cluster-issuer: {{ .Values.global.letsEncryptClusterIssuer }}
-    kubernetes.io/tls-acme: "true"
-spec:
-  ingressClassName: nginx
-  tls:
-  - hosts:
-    - example.{{ .Values.ingress.hostname }}
-    secretName: example-cert
-  rules:
-  - host: example.{{ .Values.ingress.hostname }}
-    http:
-      paths:
-      - pathType: Prefix
-        path: /
-        backend:
-          service:
-            name: {{ .Release.Name }}-hello-frontend
-            port:
-              number: 80
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: {{ .Release.Name }}-example-hello-ingress
+#   labels:
+#     app.plaidcloud.com/app: nginx
+#     app.plaidcloud.com/component: example-ingress
+#   annotations:
+#     cert-manager.io/cluster-issuer: {{ .Values.global.letsEncryptClusterIssuer }}
+#     kubernetes.io/tls-acme: "true"
+# spec:
+#   ingressClassName: nginx
+#   tls:
+#   - hosts:
+#     - example.{{ .Values.ingress.hostname }}
+#     secretName: example-cert
+#   rules:
+#   - host: example.{{ .Values.ingress.hostname }}
+#     http:
+#       paths:
+#       - pathType: Prefix
+#         path: /
+#         backend:
+#           service:
+#             name: {{ .Release.Name }}-hello-frontend
+#             port:
+#               number: 80

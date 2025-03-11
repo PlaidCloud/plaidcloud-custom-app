@@ -39,6 +39,12 @@ exampleValues:
   mountPath: /home/temp
 ```
 
+### Regarding Ingresses
+
+We do not allow for the creation of public facing ingresses, but have provided an example for your reference.
+
+We are working to add support for the Kubernetes Gateway API to allow you to define your own routes within our infrastructure.
+
 ## 4. Notify your technical support member to add the custom application to your workspace
 
 Once you have a working chart, via a fork of this chart or something completely generic, we will be able to integrate the templates into our infrastructure and begin the process of standing up your application.
