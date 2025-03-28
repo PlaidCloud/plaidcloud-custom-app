@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-example-hello
+  name: {{ .Release.Name }}-example-frontend
   labels:
       app.plaidcloud.com/app: plaidcloud
-      app.plaidcloud.com/component: example-hello
+      app.plaidcloud.com/component: example-frontend
       release: {{ .Release.Name }}
 spec:
   replicas: 1
   selector:
     matchLabels:
       app.plaidcloud.com/app: plaidcloud
-      app.plaidcloud.com/component: example-hello
+      app.plaidcloud.com/component: example-frontend
   template:
     metadata:
       labels:
         app.plaidcloud.com/app: plaidcloud
-        app.plaidcloud.com/component: example-hello
+        app.plaidcloud.com/component: example-frontend
         release: {{ .Release.Name }}
     spec:
       volumes:
@@ -24,7 +24,7 @@ spec:
         configMap:
           name: example-configmap
       containers:
-      - name: example-hello
+      - name: example-frontend
         image: nginxdemos/hello:0.4
         # If using your own protected image repository, uncomment this secret and create a pull secret as shown in the example.
         # imagePullSecret: example-key

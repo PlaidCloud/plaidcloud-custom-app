@@ -1,2 +1,4 @@
 exampleValues:
   mountPath: /home/temp
+ingress:
+  hostname: yourapp.plaid.cloud

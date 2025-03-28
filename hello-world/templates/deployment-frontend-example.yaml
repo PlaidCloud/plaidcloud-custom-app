@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-example-backend
+  labels:
+      app.plaidcloud.com/app: plaidcloud
+      app.plaidcloud.com/component: example-backend
+      release: {{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.plaidcloud.com/app: plaidcloud
+      app.plaidcloud.com/component: example-backend
+  template:
+    metadata:
+      labels:
+        app.plaidcloud.com/app: plaidcloud
+        app.plaidcloud.com/component: example-backend
+        release: {{ .Release.Name }}
+    spec:
+      volumes:
+      - name: example-volume
+        configMap:
+          name: example-configmap
+      containers:
+      - name: example-backend
+        image: nginxdemos/hello:0.4
+        # If using your own protected image repository, uncomment this secret and create a pull secret as shown in the example.
+        # imagePullSecret: example-key
+        resources:
+          requests:
+            cpu: 50m
+            memory: 250Mi
+          limits:
+            cpu: 50m
+            memory: 250Mi
+        volumeMounts:
+          - name: example-volume
+            mountPath: {{ .Values.exampleValues.mountPath }}
+            readonly: true
+        env:
+          - name: EXAMPLE_ENV_VAR_FROM_CONFIGMAP
+            valueFrom:
+              configMapKeyRef:
+                name: example-configmap
+                key: example_key
+        # Any ports that need opened for the running application should be defined here.    
+        ports:
+          - name: http
+            containerPort: 80

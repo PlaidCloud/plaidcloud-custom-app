@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-hello-frontend
+  labels:
+    app: plaidcloud
+    component: example-backend
+    release: {{ .Release.Name }}
+spec:
+{{/*
+  port: The port exposed on the service, i.e. where ingress traffic should be sent.
+  targetPort: The port exposed on the pods that traffic hitting this service should be routed to.
+  name: An alias for the target port, can be a reference to a port definition in the pod spec.
+*/}}
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: http
+  selector:
+    app.plaidcloud.com/app: plaidcloud
+    app.plaidcloud.com/component: example-backend
+    release: {{ .Release.Name }}
