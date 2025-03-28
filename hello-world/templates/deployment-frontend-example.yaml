@@ -26,15 +26,22 @@ spec:
       containers:
       - name: example-backend
         image: nginxdemos/hello:0.4
-        # If using your own protected image repository, uncomment this secret and create a pull secret as shown in the example.
+        {{/*
+          If using your own protected image repository, uncomment the imagePullSecret key in the line below
+          and include the name of the pull secret. We provide a pullsecret-example.yaml file for reference.
+        */}}
         # imagePullSecret: example-key
+        {{/*
+          If you have known resource requirements for application functionality, you may set them here.
+        */}}
         resources:
           requests:
             cpu: 50m
             memory: 250Mi
-          limits:
-            cpu: 50m
-            memory: 250Mi
+        {{/*
+          Below is an example of how to mount a config file at a specific path in a pod. This is a common
+          technique to maintain configs outside of deployed pods.
+        */}}
         volumeMounts:
           - name: example-volume
             mountPath: {{ .Values.exampleValues.mountPath }}

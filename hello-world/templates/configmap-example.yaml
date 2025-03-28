@@ -10,6 +10,11 @@ data:
 
   example.txt: |
     A file named example.txt will be created with this text as its content.
+    You can treat this as a normal file in a block like this.
+
+    Template variables can also be substituted here.
+
+    exampleConnectionString=database.{{ .Values.ingress.hostname }}
 
   example-two.txt: |
     Each required file can be defined in this way.
